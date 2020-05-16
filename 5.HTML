@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocalizacion</title>
+    <h1>Nos encontramos en:</h1>
+    <h1>Av. Plutarco Elías Calles #1210 Fovissste Chamizal Ciudad Juárez, Chih.</h1>
+    </head>
+    
+<body style="background: #FF416C;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+"  color: #642a93;
+    font-size: 30px;
+    text-align: center;>
+	<button onclick="findMe()">Mostrar ubicación</button>
+	<div id="map"></div>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=es"></script>
+	<script>
+		function findMe(){
+			var output = document.getElementById('map');
+            
+			if (navigator.geolocation) {
+				output.innerHTML = "<p>Tu navegador soporta Geolocalizacion</p>";
+			}else{
+				output.innerHTML = "<p>Tu navegador no soporta Geolocalizacion</p>";
+			}
+
+			function localizacion(posicion){
+
+				var latitude = posicion.coords.latitude;
+				var longitude = posicion.coords.longitude;
+                
+                output.innerHTML = "<p>Latitud:"+latitude+"<br>Longitud:"+longitude+"</p>"
+
+			}
+
+			function error(){
+				output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
+
+			}
+
+			navigator.geolocation.getCurrentPosition(localizacion,error);
+
+		}
+
+	</script>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13597.297652820922!2d-106.38170240000001!3d31.5701505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1588279159439!5m2!1ses-419!2smx" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <section>
+       <fieldset>
+  <legend>Envianos un mensaje </legend>
+                         <form>
+        <label for = "pnombre">Nombre Completo:</label><br>
+        <input type="text" id="pnombre" name="pnombre"><br>
+        <label for="correo">Correo Electronico:</label><br>
+        <input type="text" id="correo" name="correo"><br>
+        <label for="Direc">Mensaje:</label><br>
+        <textarea id="Direc" class="input" name="Direc" rows="7" cols="30"></textarea><br>
+        <input id="submit_button" type="submit" value="Enviar"/><br>
+                           </form>
+        </fieldset>
+           </section>
+</body>
+</html>
